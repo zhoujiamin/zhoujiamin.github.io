@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[React工程初始化]]></title>
+      <url>/2017/05/10/React%E5%B7%A5%E7%A8%8B%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      <content type="html"><![CDATA[<p>一直用的都是VUE框架，毕设的间隙开始学习React，感受一下React的魅力。<br>因为VUE-CIL可以帮助我们快速构建VUE工程，如何快速构建React工程是我最想的了解的。我找到了2种方法。</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>这样生成的工程里没有使用webpack等工具，是一个比较“单纯”的React工程<br>More info: <a href="https://facebook.github.io/react/docs/installation.html" target="_blank" rel="external">install</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install -g create-react-app</div><div class="line">create-react-app my-app</div><div class="line"></div><div class="line">cd my-app</div><div class="line">npm start</div></pre></td></tr></table></figure>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>基于YEOMAN搭建的<br>More info: <a href="https://github.com/react-webpack-generators/generator-react-webpack#readme" target="_blank" rel="external">install</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npm install -g yo</div><div class="line">npm install -g generator-react-webpack</div><div class="line"></div><div class="line">mkdir my-new-project &amp;&amp; cd my-new-project</div><div class="line"></div><div class="line">yo react-webpack</div></pre></td></tr></table></figure>
+<p>方法一、二的不同：<br>方法一得到的工程相对更单纯一些，需要开发人员额外的工具<br>方法二得到的工程添加了如webpack等工具，可以简化开发人员的配置<br>学习的初期我更在意对react本身的学习，因此会选用方法二。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 框架 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> React </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[周日随笔]]></title>
       <url>/2017/05/07/%E5%91%A8%E6%97%A5%E9%9A%8F%E7%AC%94/</url>
       <content type="html"><![CDATA[<p>前段时间精神紧张，松弛了2周之后，是时候重新开始战斗了。</p>
@@ -47,6 +73,12 @@
     
   
   
+    
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
     
     <entry>
       <title><![CDATA[about]]></title>
