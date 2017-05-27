@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            transform 3D | 
+        
+        ZJM BLOG
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="周 J M">
+    <meta name="description" content="null">
+    <meta name="keywords" content="前端,CSS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.jpg">
+    <link rel="icon" sizes="192x192" href="/img/favicon.jpg">
+    <link rel="apple-touch-icon" href="/img/favicon.jpg">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ZJM BLOG">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="transform 3D | ZJM BLOG">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="CSS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坐标系、透视与灭点"><span class="post-toc-number">1.</span> <span class="post-toc-text">坐标系、透视与灭点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#perspective"><span class="post-toc-number">2.</span> <span class="post-toc-text">perspective</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#perspective-origin-x-axis-y-axis"><span class="post-toc-number">3.</span> <span class="post-toc-text">perspective-origin(x-axis y-axis)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#transform-style"><span class="post-toc-number">4.</span> <span class="post-toc-text">transform-style</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#backface-visibility"><span class="post-toc-number">5.</span> <span class="post-toc-text">backface-visibility</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#transform"><span class="post-toc-number">6.</span> <span class="post-toc-text">transform</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 2 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/m-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                transform 3D
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/favicon.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>周 J M</strong>
+        <span>5月 26, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/CSS/">CSS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=transform 3D&url=http://yoursite.com//2017/05/26/transform-3D/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=transform 3D&url=http://yoursite.com//2017/05/26/transform-3D/index.html&via=周 J M" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2017/05/26/transform-3D/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2017/05/26/transform-3D/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>与transform 3D变换主要有下面几个属性：<br>perspective，perspective-origin，transform-style，backface-visibility还有transform及其他属性。接下来，会一起学习几个属性的功能。<br>建议阅读前首先阅读<a href="/2017/05/22/transform_2D">transform 2D</a>。</p>
+<p>首先，先学习几个基本概念</p>
+<h2 id="坐标系、透视与灭点"><a href="#坐标系、透视与灭点" class="headerlink" title="坐标系、透视与灭点"></a>坐标系、透视与灭点</h2><p>下图可以看到清晰的看到x,y,z的正方向。<br><img src="./zuobiao.png" alt="坐标系">注1</p>
+<p>透视指的是三维变化，当我们看物体会有近大远小的体验，这与三维效果的呈现息息相关。perspective就是css中与透视相关的熟悉。<br>灭点是指，当景物离自己的位置越远时，就会越趋于集中到某一个点上。这个点就是灭点。通过perspective-origin可以改变灭点的位置（默认是中心点）。</p>
+<h2 id="perspective"><a href="#perspective" class="headerlink" title="perspective"></a>perspective</h2><p>指定观察者距离「z=0」平面的距离，为元素及其内容应用透视变换。</p>
+<p>如下图中，d就是perspective的值。<br><img src="./perspective.png" alt="perspective"><br>应用了perspective之后，当图片离我们越近，则图片越大，越远则越小。<br>可以举个例子<br><img src="./perspectivenone.gif" alt="perspectivenone"><img src="./perspective1.gif" alt="perspective1"><br>左右图中，灰色图片都在沿着x轴转动，但是左图没有设置perspective，右图设置了perspective：200px。这样，就可以在右图看到图片大小的变化，当图片转动到离眼睛近的时候，就会变大，远的时候就会变小。而左图永远好像在一个平面内，z=0上，没有大小的变化。<br>代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>rotateX指在x轴上的旋转角度<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.wrapper</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">50px</span> auto;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">perspective</span>:<span class="number">200px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wrapper</span> &gt; <span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">180px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">40px</span> <span class="number">10px</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">rotatex</span>(0deg);</div><div class="line">    <span class="attribute">animation</span>: test <span class="number">10s</span> infinite;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> test &#123;</div><div class="line">0%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(0deg);&#125;</div><div class="line">10%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(36deg);&#125;</div><div class="line">20%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(72deg);&#125;</div><div class="line">30%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(108deg);&#125;</div><div class="line">40%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(144deg);&#125;</div><div class="line">50%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(180deg);&#125;</div><div class="line">60%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(216deg);&#125;</div><div class="line">70%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(252deg);&#125;</div><div class="line">80%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(288deg);&#125;</div><div class="line">90%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(324deg);&#125;</div><div class="line">100%&#123;<span class="attribute">transform</span>: <span class="built_in">rotateX</span>(360deg);&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的一点是，当某个点z坐标超过perspective时，也就越过了我们的眼睛，将无法看到这个点。</p>
+<p>perspective有2种用法：<br>perspective：100px;transform: perspective(100px);<br>第一种是将透视应用到其子元素上，所有的子元素共享一个透视距离，灭点。但是第二种是给每个元素使用一个透视距离。举个例子：<br><img src="./perspective2.png" alt="perspective2"><img src="./perspective3.png" alt="perspective3"><br>左图是perspective：100px；右图是transform: perspective(100px);2者的区别显而易见。左图共用了一个透视距离，3个图片都是好像都是从一个点进行观测，每个图片的观测到的大小是不一样的。而右图用了3个透视距离，都是100px;因此，每张图片表现出的样子是一样的。除此之外，对于左例可以用perspective-origin改变整体的灭点位置，而在右例上无法使用。<br>左例代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div1'</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div2'</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div2'</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.wrapper</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">150px</span> auto;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">perspective</span>: <span class="number">100px</span>; </div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wrapper</span> &gt; <span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">180px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">10px</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</div><div class="line">    <span class="attribute">transform</span>:<span class="built_in">rotatex</span>(50deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="perspective-origin-x-axis-y-axis"><a href="#perspective-origin-x-axis-y-axis" class="headerlink" title="perspective-origin(x-axis y-axis)"></a>perspective-origin(x-axis y-axis)</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">value</th>
+<th style="text-align:left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">x-axis</td>
+<td style="text-align:left">left center right length %</td>
+</tr>
+<tr>
+<td style="text-align:left">y-axis</td>
+<td style="text-align:left">top center bottom length %</td>
+</tr>
+</tbody>
+</table>
+<p>如图，可以显示出灭点的作用,可以改变我们的视角。<br><img src="./perspective_origin.png" alt="perspective_origin"></p>
+<p>还是上面那个例子，当我们旋转了90°后，由于我们的灭点是在中心点，所以我们什么都看不到。如下：<br><img src="./perspective_origin1.png" alt="perspective_origin1"></p>
+<p>于是，我将改变改元素的灭点位置。注意，我们改变的是对于其子元素的视角。因此，在此例子上，我们必须把perspective-origin设置在.wrapper上。<br><img src="./perspective_origin2.png" alt="perspective_origin2"><img src="./perspective_origin3.png" alt="perspective_origin3"><br>左图perspective-origin:center top;右图perspective-origin:right bottom;<br>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span>rotateX定x轴上的旋转角度<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.wrapper</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">50px</span> auto;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">perspective</span>:<span class="number">200px</span>;</div><div class="line">    <span class="attribute">perspective-origin</span>:right bottom;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wrapper</span> &gt; <span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">180px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">40px</span> <span class="number">10px</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">rotatex</span>(90deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="transform-style"><a href="#transform-style" class="headerlink" title="transform-style"></a>transform-style</h2><p>flat(默认) | preserve-3d<br>指定某元素的子元素是（看起来）位于三维空间内，还是在该元素所在的平面内被扁平化。当该属性值为「preserve-3d」时，元素将会创建局部堆叠上下文。</p>
+<p>什么意思呢？「preserve-3d」会改变图像的绘制顺序，建立起正真的三维空间。语言苍白无力，上demo。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div1'</span>&gt;</span>div1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div2'</span>&gt;</span>div2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div3'</span>&gt;</span>div3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.wrapper</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">150px</span> auto;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">perspective</span>: <span class="number">100px</span>;</div><div class="line">   <span class="comment">/*transform-style:preserve-3d;</span></div><div class="line">    perspective-origin:center top; */</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.wrapper</span> &gt; <span class="selector-tag">div</span> &#123;    </div><div class="line">    <span class="attribute">width</span>: <span class="number">180px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">40px</span> <span class="number">10px</span>;</div><div class="line">    <span class="attribute">position</span>:absolute;    </div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div1</span> &#123;</div><div class="line">  <span class="attribute">transform</span>:<span class="built_in">translateZ</span>(50px);</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span> &#123;</div><div class="line">  <span class="attribute">transform</span>:<span class="built_in">translateZ</span>(30px);</div><div class="line">  <span class="attribute">background-color</span>: yellow;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div3</span> &#123;</div><div class="line">  <span class="attribute">transform</span>:<span class="built_in">translateZ</span>(10px);</div><div class="line">  <span class="attribute">background-color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="./transform-style1.png" alt="transform-style1"><br>上图为结果，translateZ用于改变Z轴上的位置，可以知道div3在z=10px的位置，div2在z=30px，div1在z=50px。但是由于网页的绘制顺序，div3还是在最前面。<br>.wrapper上添加transform-style:preserve-3d；在z=50px的div1跑到了最前面<br><img src="./transform-style2.png" alt="transform-style2"><br>为了更好的看清这个例子，.wrapper上添加perspective-origin:center top;<br><img src="./transform-style3.png" alt="transform-style3"></p>
+<p>这样对transform-style是不是更了解了一些呢。</p>
+<h2 id="backface-visibility"><a href="#backface-visibility" class="headerlink" title="backface-visibility"></a>backface-visibility</h2><p>visible（默认） | hidden<br>指定元素背面面向用户时是否可见。<br>以perspective小节中的动图2举例，可以看到当元素rotatex(90deg)之后，会展示出元素镜像的背面，若是我们希望不看到这个这个背面，则可以为这个div指定：<br>backface-visibility：hidden;结果如下：<br><img src="./backface-visibility1.gif" alt="backface-visibility1"></p>
+<h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>3D 变换的transform函数有以下几种(与2D相关不再赘述)：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">function</th>
+<th style="text-align:left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">matrix3d()</td>
+<td style="text-align:left">接受16个参数，以一个4x4矩阵的形式指定一个3D变换</td>
+</tr>
+<tr>
+<td style="text-align:left">translate3d(x,y,z)</td>
+<td style="text-align:left">指定3D位移。第1个参数对应X轴，第2个对应Y轴，第3个参数对应Z轴，都不允许省略</td>
+</tr>
+<tr>
+<td style="text-align:left">translateZ(z)</td>
+<td style="text-align:left">指定对象Z轴的平移</td>
+</tr>
+<tr>
+<td style="text-align:left">rotate3d(x,y,z,angle)</td>
+<td style="text-align:left">指定3D旋转角度，前3个参数分别表示旋转的方向，第4个表示旋转的角度，都不允许省略</td>
+</tr>
+<tr>
+<td style="text-align:left">rotateX(angle)</td>
+<td style="text-align:left">指定对象在x轴上的旋转角度 rotate3d(1,0,0,angle)</td>
+</tr>
+<tr>
+<td style="text-align:left">rotateY(angle)</td>
+<td style="text-align:left">指定对象在y轴上的旋转角度 rotate3d(0,1,0,angle)</td>
+</tr>
+<tr>
+<td style="text-align:left">rotateZ(angle)</td>
+<td style="text-align:left">指定对象在z轴上的旋转角度 rotate3d(0,0,1,angle)</td>
+</tr>
+<tr>
+<td style="text-align:left">scale3d(x,y,z)</td>
+<td style="text-align:left">指定3D缩放。第1个参数对应X轴，第2个对应Y轴，第3个对应Z轴，参数不允许省略</td>
+</tr>
+<tr>
+<td style="text-align:left">scalez(z)</td>
+<td style="text-align:left">指定对象的z轴缩放</td>
+</tr>
+</tbody>
+</table>
+<p>如果你看了<a href="/2017/05/22/transform_2D">2D变换</a>,这里的变换会很容易理解。有个几个点可以注意一下：</p>
+<ul>
+<li>matrix3d()与3D动画平移，旋转，倾斜都有关系，由于在应用时使用场景较少，不进行推到，有兴趣的朋友可以看看参考文件3。</li>
+<li>rotate3d(x,y,z,angle)：可以理解为以经过(0,0,0)到(x,y,z)的直线进行旋转，旋转angle度。</li>
+</ul>
+<p>之后，应该还会生产一篇动画demo。</p>
+<hr>
+<p>注1：<a href="http://acgtofe.com/posts/2013/09/css-3d-transform" target="_blank" rel="external">图片来源</a><br><a href="http://acgtofe.com/posts/2013/09/css-3d-transform" target="_blank" rel="external">参考文献1</a><br><a href="http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/" target="_blank" rel="external">参考文献2</a><br><a href="https://www.w3.org/TR/css-transforms-1/" target="_blank" rel="external">参考文献3</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/22/transform_2D/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/favicon.jpg" alt="周 J M's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        644815991@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto: 644815991@qq.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">5</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/框架/">框架<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="tags">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                tags
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/zhoujiamin" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;ZJM BLOG
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
