@@ -10,7 +10,7 @@
     
     <title>
         
-            Javascript中的attribute和property的区别 | 
+            数组和对象中的扩展运算符 | 
         
         ZJM BLOG
     </title>
@@ -60,7 +60,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Javascript中的attribute和property的区别 | ZJM BLOG">
+    <meta property="og:title" content="数组和对象中的扩展运算符 | ZJM BLOG">
     <meta property="og:description" content="null">
     <meta property="og:article:tag" content="JS"> 
 
@@ -244,7 +244,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#区别attribute和property"><span class="post-toc-number">1.</span> <span class="post-toc-text">区别attribute和property</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JQuery中attr-prop"><span class="post-toc-number"></span> <span class="post-toc-text">JQuery中attr(),prop()</span></a>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解构赋值"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">解构赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#取出可枚举属性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">取出可枚举属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数组"><span class="post-toc-number">2.</span> <span class="post-toc-text">数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解构赋值-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">解构赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#取出数组中的值放入新数组"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">取出数组中的值放入新数组</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写到这里了，感觉重要的是活学活用！"><span class="post-toc-number">3.</span> <span class="post-toc-text">写到这里了，感觉重要的是活学活用！</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -281,7 +281,7 @@
         
     
             <p class="article-headline-p">
-                Javascript中的attribute和property的区别
+                数组和对象中的扩展运算符
             </p>
         </div>
 
@@ -300,7 +300,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>周 J M</strong>
-        <span>9月 16, 2016</span>
+        <span>6月 03, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -351,7 +351,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Javascript中的attribute和property的区别&url=http://yoursite.com//2016/09/16/Javascript中的attribute和property的区别/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=数组和对象中的扩展运算符&url=http://yoursite.com//2017/06/03/数组和对象中的扩展运算符/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -360,7 +360,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Javascript中的attribute和property的区别&url=http://yoursite.com//2016/09/16/Javascript中的attribute和property的区别/index.html&via=周 J M" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=数组和对象中的扩展运算符&url=http://yoursite.com//2017/06/03/数组和对象中的扩展运算符/index.html&via=周 J M" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -369,7 +369,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2016/09/16/Javascript中的attribute和property的区别/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2017/06/03/数组和对象中的扩展运算符/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -378,7 +378,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2016/09/16/Javascript中的attribute和property的区别/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2017/06/03/数组和对象中的扩展运算符/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -402,18 +402,30 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>问题的来源是在JQuery中的2个方法attr(),prop()，这2个方法的使用有什么区别呢？</p>
-<h2 id="区别attribute和property"><a href="#区别attribute和property" class="headerlink" title="区别attribute和property"></a>区别attribute和property</h2><p>attribute和property是非常容易混淆的概念，只有区别了attribute和property，才能正确区分attr(),prop()方法。<br>attribute翻译成中文术语为“特性”，property翻译成中文术语为“属性”。<br>看一个简单的例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span> <span class="attr">class</span>=<span class="string">"div"</span>&gt;</span>div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>这里的div元素有2个attribute，id和class，元素的attribute是可以通过看html直观的看到的（除非通过setAttribute等方式设置）。通过setAttribute，getAttribute,removeAttribute可以设置，取得，删除div元素的attribute。<br>那什么是div这个元素的property呢？<br>先看一下下面这个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dog=&#123;</div><div class="line">    <span class="attr">color</span>:yellow,</div><div class="line">    <span class="attr">eat</span>:meat</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在dog这个对象中， color，eat都是property。<br>那对于上面这个例子，我们不妨看看浏览器开发者工具<br><img src="./1.jpg" alt="1"><br> 可以看到，DOM对象中有accessKey,align等多个property。<br>在这里，我们关注划线3个property。<br>attributes属性：attributes属性是一个比较特殊的属性。DOM节点的每个特性,都由一个Attr节点表示，且保存在attributes属性中，所以我们看attributes属性，就可以知道该元素有哪些特性，如图：<br><img src="2.jpg" alt="2"><br>我们看到DOM对象中还有id,className，也就是意味着大多数元素的attribute，都可以通过访问property得到，即：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementbyId(<span class="string">"myDiv"</span>).getAttribute(<span class="string">"id"</span>);</div><div class="line"><span class="built_in">document</span>.getElementbyId(<span class="string">"myDiv"</span>).id;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.getElementbyId(<span class="string">"myDiv"</span>).getAttribute(<span class="string">"class"</span>);</div><div class="line"><span class="built_in">document</span>.getElementbyId(<span class="string">"myDiv"</span>).className;</div></pre></td></tr></table></figure></p>
-<p>这2组结果是类似的。<br>注意区别：<br>1）只有公认的（非自定义的）特性，才能以属性的形式添加到DOM对象中。<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;myDiv&quot; class=&quot;div&quot; myAttribute=&quot;attr&quot;&gt;div&lt;/div&gt;</div><div class="line">document.getElementbyId(&quot;myDiv&quot;).getAttribute(&quot;myAttribute&quot;); //attr</div><div class="line">document.getElementbyId(&quot;myDiv&quot;).myAttribute  //underfined(IE除外，IE会为自定义的特性创建属性)</div></pre></td></tr></table></figure></p>
-<p>2)有几类特殊的attribute，虽然有对应的属性名，但返回内容不一样<br><strong> style </strong> :用getAttribute进行访问时，返回css文本，但用属性访问时，返回一个对象；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;myDiv&quot; class=&quot;div&quot; style=&quot;color: yellow;background-color: red&quot;&gt;div&lt;/div&gt;</div><div class="line">document.getElementById(&quot;myDiv&quot;).getAttribute(&quot;style&quot;);//&quot;color: yellow;background-color: red&quot;</div><div class="line">document.getElementById(&quot;myDiv&quot;).style</div><div class="line">//CSSStyleDeclaration &#123;0: &quot;color&quot;, 1: &quot;background-color&quot;, alignContent: &quot;&quot;, alignItems: &quot;&quot;, alignSelf: &quot;&quot;, alignmentBaseline: &quot;&quot;, all: &quot;&quot;…&#125;</div></pre></td></tr></table></figure></p>
-<p><strong> onclick这类事件处理程序 </strong>：用getAttribute进行访问时，返回函数文本，但用属性访问时，返回一个函数；<br><strong> checked </strong>:用getAttribute进行访问时,返回和html中一样“checked”，但用属性访问时，返回一个“true”<br>类似的还有别的只取单个值的特性。<br>小结：attribute是html元素的概念，property是DOM对象的概念。公认的attribute会在DOM对象中自动创建property,因此，公认的attribute都可以通过DOM的property访问。<br><img src="./3.png" alt="3"></p>
-<h1 id="JQuery中attr-prop"><a href="#JQuery中attr-prop" class="headerlink" title="JQuery中attr(),prop()"></a>JQuery中attr(),prop()</h1><p>相信大家看完上述内容之后，对attribute和property的理解已经清晰了一些。</p>
-<p>jQuery 1.6 版本之前，只有attr()方法，而jQuery 1.6 版本版本之后，attr() 方法对于未设置的 attributes （即标签中没写该 attributes）都会返回 undefined。对于检索和改变 DOM 的 properties，如表单元素的 checked、selected 或 disabled 状态，应使用prop() 方法。<br>为什么呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input id=<span class="string">"input"</span>checked=<span class="string">"checked"</span> /&gt;</div><div class="line">$(<span class="string">"#input"</span>).attr(<span class="string">"checked"</span>)；<span class="comment">//"checked"</span></div><div class="line">$(<span class="string">"#input"</span>).prop(<span class="string">"checked"</span>);<span class="comment">//true</span></div><div class="line">&lt;input id=<span class="string">"input"</span> /&gt;</div><div class="line">$(<span class="string">"#input"</span>).attr(<span class="string">"checked"</span>);<span class="comment">//undefined</span></div><div class="line">$(<span class="string">"#input"</span>).prop(<span class="string">"checked"</span>);<span class="comment">//false</span></div></pre></td></tr></table></figure></p>
-<p>为了避免attr()的这个问题影响，于是对于checked、selected 或 disabled 等，普遍选用prop()处理。<br>具体如何选择，可以看看下面这张图：<br><img src="./4.png" alt="4"></p>
-<hr>
-<p><a href="http://javascript.ruanyifeng.com/jquery/basic.html" target="_blank" rel="external">参考1</a><br><a href="http://stylechen.com/attribute-property.html" target="_blank" rel="external">参考2</a></p>
+        <p>最近尝试着在自己的项目中，写es6。扩展运算符(…)是个好东西，但常常会忘记使用，为了更好的在代码中使用，记录一下。</p>
+<p>本篇主要为记录，原创内容较少。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>扩展运算符在对象中的应用包括解构赋值和取出可枚举属性2个作用</p>
+<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p>对象的解构赋值用于从一个对象取值，相当于将所有可遍历的、但尚未被读取的属性，分配到指定的对象上面。所有的键和它们的值，都会拷贝到新对象上面。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123; x, y, ...z &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>, <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125;;</div><div class="line">x <span class="comment">// 1</span></div><div class="line">y <span class="comment">// 2</span></div><div class="line">z <span class="comment">// &#123; a: 3, b: 4 &#125;</span></div></pre></td></tr></table></figure></p>
+<p>由于解构赋值要求等号右边是一个对象，所以如果等号右边是undefined或null，就会报错，因为它们无法转为对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123; x, y, ...z &#125; = <span class="literal">null</span>; <span class="comment">// Cannot read property 'x' of null</span></div><div class="line"><span class="keyword">let</span> &#123; x, y, ...z &#125; = <span class="literal">undefined</span>; <span class="comment">// Cannot read property 'x' of undefined</span></div></pre></td></tr></table></figure></p>
+<p>解构赋值必须是最后一个参数，否则会报错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123; ...x, y, z &#125; = obj; <span class="comment">// 句法错误</span></div><div class="line"><span class="keyword">let</span> &#123; x, ...y, ...z &#125; = obj; <span class="comment">// 句法错误</span></div></pre></td></tr></table></figure></p>
+<p>解构赋值的拷贝是浅拷贝，即如果一个键的值是复合类型的值（数组、对象、函数）、那么解构赋值拷贝的是这个值的引用，而不是这个值的副本。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">a</span>: &#123; <span class="attr">b</span>: <span class="number">1</span> &#125; &#125;;</div><div class="line"><span class="keyword">let</span> &#123; ...x &#125; = obj;</div><div class="line">obj.a.b = <span class="number">2</span>;</div><div class="line">x.a.b <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>解构赋值不会拷贝继承自原型对象的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let o1 = &#123; a: 1 &#125;;</div><div class="line">let o2 = &#123; b: 2 &#125;;</div><div class="line">o2.__proto__ = o1;</div><div class="line">let &#123; ...o3 &#125; = o2;</div><div class="line">o3 // &#123; b: 2 &#125;</div><div class="line">o3.a // undefined</div></pre></td></tr></table></figure></p>
+<p>上面代码中，对象o3复制了o2，但是只复制了o2自身的属性，没有复制它的原型对象o1的属性。简单的说，Object.keys()能取到的属性(自身，可枚举)，才能在对象解构赋值中拿到。<br><strong><em>但是</em></strong>对于单纯的解构赋值(没有…)是可以拿到继承的属性的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var o = Object.create(&#123; x: 1, y: 2 &#125;);</div><div class="line">o.z = 3;</div><div class="line"></div><div class="line">let &#123; x, ...&#123; y, z &#125; &#125; = o;</div><div class="line">x // 1</div><div class="line">y // undefined</div><div class="line">z // 3</div></pre></td></tr></table></figure></p>
+<p>对于不可遍历属性也是一样，单纯的解构赋值是可以得到到的不可遍历属性的，但是有(…)却不行，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var o = Object.create(&#123; x: 1, y: 2 &#125;);</div><div class="line">Object.defineProperty(o,&apos;f&apos;,&#123;value:8,enumerable:false&#125;)</div><div class="line">Object.defineProperty(o,&apos;g&apos;,&#123;value:8,enumerable:false&#125;)</div><div class="line">o.z = 3;</div><div class="line"></div><div class="line">let &#123; x,g, ...&#123;f, y, z&#125; &#125; = o;</div><div class="line">console.log(x) // 1</div><div class="line">console.log(y) // undefined</div><div class="line">console.log(z) // 3</div><div class="line">console.log(f) // undefined</div><div class="line">console.log(g) // 8</div></pre></td></tr></table></figure></p>
+<p>对于解构赋值，有一种很常见的应用：如下，使用x和y参数进行操作，其他的参数组成一个对象，作为restConfig<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function baseFunction(&#123; a, b &#125;) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div><div class="line">function wrapperFunction(&#123; x, y, ...restConfig &#125;) &#123;</div><div class="line"></div><div class="line">  return baseFunction(restConfig);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="取出可枚举属性"><a href="#取出可枚举属性" class="headerlink" title="取出可枚举属性"></a>取出可枚举属性</h3><p>前面扩展运算符(…)用于赋值符号的左边，也就是被赋值的对象，而这里的应用是放到运算符的后面。用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let z = &#123; a: 3, b: 4 &#125;;</div><div class="line">let n = &#123; ...z &#125;;</div><div class="line">n // &#123; a: 3, b: 4 &#125;</div></pre></td></tr></table></figure></p>
+<p>这等同于使用Object.assign方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let aClone = &#123; ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aClone = Object.assign(&#123;&#125;, a);</div><div class="line"></div><div class="line">let ab = &#123; ...a, ...b &#125;;</div><div class="line">// 等同于</div><div class="line">let ab = Object.assign(&#123;&#125;, a, b);</div></pre></td></tr></table></figure></p>
+<p>由于后面的属性会覆盖前面的属性，可以利用这个(…)和自定义属性的顺序先后，做到：修改对象的部分属性和设置默认值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let newVersion = &#123;</div><div class="line">  ...previousVersion,</div><div class="line">  name: &apos;New Name&apos; // Override the name property</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面代码中，newVersion对象自定义了name属性，其他属性全部复制自previousVersion对象。</p>
+<p>如果把自定义属性放在扩展运算符前面，就变成了设置新对象的默认属性值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let aWithDefaults = &#123; x: 1, y: 2, ...a &#125;;</div><div class="line">// 等同于</div><div class="line">let aWithDefaults = Object.assign(&#123;&#125;, &#123; x: 1, y: 2 &#125;, a);</div></pre></td></tr></table></figure></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>和对象很类似，简单举几个例子。</p>
+<h3 id="解构赋值-1"><a href="#解构赋值-1" class="headerlink" title="解构赋值"></a>解构赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">let [foo, [[bar], baz]] = [1, [[2], 3]];</div><div class="line">foo // 1</div><div class="line">bar // 2</div><div class="line">baz // 3</div><div class="line"></div><div class="line">let [x, , y] = [1, 2, 3];</div><div class="line">x // 1</div><div class="line">y // 3</div><div class="line"></div><div class="line">let [head, ...tail] = [1, 2, 3, 4];</div><div class="line">head // 1</div><div class="line">tail // [2, 3, 4]</div></pre></td></tr></table></figure>
+<p>如果解构不成功，变量的值就等于undefined。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let [foo] = [];//foo:undefined</div><div class="line">let [bar, foo] = [1];bar:1,foo:undefined</div></pre></td></tr></table></figure></p>
+<p>另一种情况是不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组。这种情况下，解构依然可以成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let [a, [b], d] = [1, [2, 3], 4];</div><div class="line">a // 1</div><div class="line">b // 2</div><div class="line">d // 4</div></pre></td></tr></table></figure></p>
+<p>上面两个例子，都属于不完全解构，但是可以成功。<br>如果等号的右边不是数组（或者严格地说，不是可遍历的结构，没有Iterator），那么将会报错。</p>
+<h3 id="取出数组中的值放入新数组"><a href="#取出数组中的值放入新数组" class="headerlink" title="取出数组中的值放入新数组"></a>取出数组中的值放入新数组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let a = [1,2,3];</div><div class="line">let b = [2,3,...a];// b [2,3,1,2,3]</div><div class="line">let c = [...a,6,7];// c [1,2,3,6,7]</div></pre></td></tr></table></figure>
+<h2 id="写到这里了，感觉重要的是活学活用！"><a href="#写到这里了，感觉重要的是活学活用！" class="headerlink" title="写到这里了，感觉重要的是活学活用！"></a>写到这里了，感觉重要的是活学活用！</h2><p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">参考一</a></p>
 
     
 
@@ -440,19 +452,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2016/12/12/javascript原型链/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/05/26/transform-3D/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
