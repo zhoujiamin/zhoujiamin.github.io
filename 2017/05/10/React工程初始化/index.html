@@ -197,7 +197,7 @@
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
     
@@ -404,9 +404,20 @@
     
         <p>一直用的都是VUE框架，毕设的间隙开始学习React，感受一下React的魅力。<br>因为VUE-CIL可以帮助我们快速构建VUE工程，如何快速构建React工程是我最想的了解的。我找到了2种方法。</p>
 <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>这样生成的工程里没有使用webpack等工具，是一个比较“单纯”的React工程<br>More info: <a href="https://facebook.github.io/react/docs/installation.html" target="_blank" rel="external">install</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install -g create-react-app</div><div class="line">create-react-app my-app</div><div class="line"></div><div class="line">cd my-app</div><div class="line">npm start</div></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g create-react-app
+create-react-app my-app
+
+<span class="token function">cd</span> my-app
+<span class="token function">npm</span> start
+</code></pre>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>基于YEOMAN搭建的<br>More info: <a href="https://github.com/react-webpack-generators/generator-react-webpack#readme" target="_blank" rel="external">install</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npm install -g yo</div><div class="line">npm install -g generator-react-webpack</div><div class="line"></div><div class="line">mkdir my-new-project &amp;&amp; cd my-new-project</div><div class="line"></div><div class="line">yo react-webpack</div></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g yo
+<span class="token function">npm</span> <span class="token function">install</span> -g generator-react-webpack
+
+<span class="token function">mkdir</span> my-new-project <span class="token operator">&amp;&amp;</span> <span class="token function">cd</span> my-new-project
+
+yo react-webpack
+</code></pre>
 <p>方法一、二的不同：<br>方法一得到的工程相对更单纯一些，需要开发人员额外的工具<br>方法二得到的工程添加了如webpack等工具，可以简化开发人员的配置<br>学习的初期我更在意对react本身的学习，因此会选用方法二。</p>
 
     
@@ -540,7 +551,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -558,7 +569,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS/">JS<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/框架/">框架<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS/">JS<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/框架/">框架<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         

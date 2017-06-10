@@ -197,7 +197,7 @@
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
     
@@ -403,22 +403,95 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>原以为class仅仅只是语法糖，发现在继承上跟原来的方式还是有很大的不同。简单分析记录一下。</p>
-<h3 id="es5中的继承"><a href="#es5中的继承" class="headerlink" title="es5中的继承"></a>es5中的继承</h3><p>如下的实现了es5中的继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Father() &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">Father.prototype.fun1 = function() &#123;</div><div class="line">    return &apos;father function&apos;;</div><div class="line">&#125;;</div><div class="line">function Child(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">var father = new Father();</div><div class="line">Child.prototype = father;</div><div class="line">var child = new Child(&apos;bobo&apos;);</div><div class="line">child.name;     //&quot;bobo&quot;</div><div class="line">child.fun1();   //&quot;father function&quot;</div></pre></td></tr></table></figure></p>
-<p>简单的画个图，分为2个部分介绍：<br>1）看看图的右边部分，当Father,Child作为构造函数，他们的prototype属性指向原型对象，因此，他们的实例，可以访问到这个对象的属性，child可以访问到fun1函数，是因为沿着原型链访问到了Father.prototype上的fun1。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">child.fun1 === Father.prototype.fun1    //true</div></pre></td></tr></table></figure></p>
-<p>如果我希望为Child的实例增加公共的方法，则在Child.prototype上增加方法即可。但是这一步必须在Child.prototype = father之后，如果在这之前，会因为改变了原型对象，而被抛弃。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Child.prototype = ;</div><div class="line">Child.prototype.fun2 = function() &#123;&#125;</div><div class="line">//或者</div><div class="line">father.fun2 = function() &#123;&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="es5中的继承"><a href="#es5中的继承" class="headerlink" title="es5中的继承"></a>es5中的继承</h3><p>如下的实现了es5中的继承。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+Father<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>fun1 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'father function'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> father <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Child<span class="token punctuation">.</span>prototype <span class="token operator">=</span> father<span class="token punctuation">;</span>
+<span class="token keyword">var</span> child <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">'bobo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+child<span class="token punctuation">.</span>name<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//"bobo"</span>
+child<span class="token punctuation">.</span><span class="token function">fun1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//"father function"</span>
+</code></pre>
+<p>简单的画个图，分为2个部分介绍：<br>1）看看图的右边部分，当Father,Child作为构造函数，他们的prototype属性指向原型对象，因此，他们的实例，可以访问到这个对象的属性，child可以访问到fun1函数，是因为沿着原型链访问到了Father.prototype上的fun1。</p>
+<pre class=" language-js"><code class="language-js">child<span class="token punctuation">.</span>fun1 <span class="token operator">===</span> Father<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>fun1    <span class="token comment" spellcheck="true">//true</span>
+</code></pre>
+<p>如果我希望为Child的实例增加公共的方法，则在Child.prototype上增加方法即可。但是这一步必须在Child.prototype = father之后，如果在这之前，会因为改变了原型对象，而被抛弃。</p>
+<pre class=" language-js"><code class="language-js">Child<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">;</span>
+Child<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>fun2 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//或者</span>
+father<span class="token punctuation">.</span>fun2 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
 <p>2）图的左边部分，也很容易理解，Father,Child作为普通的函数，是Function对象的实例，因此，可以访问到Function.prototype上的属性。</p>
 <p><img src="./es5.png" alt="es5.png"></p>
 <p>如果理解到这里没有理解，就可以先停一停了，把es5的原型链搞明白了，才能懂得es6的class。</p>
-<h3 id="es6中的继承"><a href="#es6中的继承" class="headerlink" title="es6中的继承"></a>es6中的继承</h3><p>如下所示，ColorPoint是Point的子类。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> pointprop = <span class="string">'Point类属性'</span>;</div><div class="line">  <span class="keyword">static</span> classMethod1() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Point类方法'</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">constructor</span>(x, y) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">  &#125;</div><div class="line">  toString1() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'x:'</span>+<span class="keyword">this</span>.x+<span class="string">',y:'</span>+<span class="keyword">this</span>.y;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorPoint</span> <span class="keyword">extends</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> colorpointprop = <span class="string">'ColorPoint类属性'</span>;</div><div class="line">  <span class="keyword">static</span> classMethod2() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'ColorPoint类方法'</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">constructor</span>(x, y, color) &#123;</div><div class="line">    <span class="keyword">super</span>(x, y); <span class="comment">// 调用父类的constructor(x, y)</span></div><div class="line">    <span class="keyword">this</span>.color = color;</div><div class="line">  &#125;</div><div class="line">  toString2() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.color + <span class="string">' '</span> + <span class="keyword">super</span>.toString1(); <span class="comment">// 调用父类的toString()</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">let</span> cp = <span class="keyword">new</span> ColorPoint(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'red'</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="es6中的继承"><a href="#es6中的继承" class="headerlink" title="es6中的继承"></a>es6中的继承</h3><p>如下所示，ColorPoint是Point的子类。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> pointprop <span class="token operator">=</span> <span class="token string">'Point类属性'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">classMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Point类方法'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">toString1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'x:'</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token operator">+</span><span class="token string">',y:'</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ColorPoint</span> <span class="token keyword">extends</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> colorpointprop <span class="token operator">=</span> <span class="token string">'ColorPoint类属性'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">classMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'ColorPoint类方法'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 调用父类的constructor(x, y)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> color<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">toString2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">toString1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 调用父类的toString()</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> cp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ColorPoint</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'red'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <p>在类Point中，pointprop是类属性，classMethod1是类方法，x,y是实例属性，toString1是实例方法。ColorPoint也是一样，不赘述。</p>
-<p>所谓的类方法，类属性是指不会被实例继承，而是直接通过类来调用。也可以叫做静态属性，静态方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Point.pointprop;       <span class="comment">//"Point类属性"</span></div><div class="line">p.pointprop;           <span class="comment">//undefined</span></div><div class="line">Point.classMethod1();  <span class="comment">//"Point类方法"</span></div><div class="line">p.classMethod1;        <span class="comment">//undefined</span></div><div class="line">p.toString1();         <span class="comment">//"x:1,y:2"</span></div></pre></td></tr></table></figure></p>
+<p>所谓的类方法，类属性是指不会被实例继承，而是直接通过类来调用。也可以叫做静态属性，静态方法。</p>
+<pre class=" language-js"><code class="language-js">Point<span class="token punctuation">.</span>pointprop<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//"Point类属性"</span>
+p<span class="token punctuation">.</span>pointprop<span class="token punctuation">;</span>           <span class="token comment" spellcheck="true">//undefined</span>
+Point<span class="token punctuation">.</span><span class="token function">classMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"Point类方法"</span>
+p<span class="token punctuation">.</span>classMethod1<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//undefined</span>
+p<span class="token punctuation">.</span><span class="token function">toString1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//"x:1,y:2"</span>
+</code></pre>
 <p>通过extends，ColorPoint对Point进行继承。如何继承的呢？extends给继承赋予了2层含义。还是通过原型链完成。<br>关系图如下：<br><img src="./es6.png" alt="es6.png"></p>
-<p>对这个关系图进行解析，也分为2个部分：<br>1）对图片右侧进行解析：<br>子类ColorPoint的原型对象的<strong>proto</strong>属性指向父类的原型对象，也就是说：通过extends,使得子类的原型对象是父类的实例，且子类中的函数自动的添加到这个原型对象上。如图，可以看到ColorPoint.prototype上有toString2方法。</p>
-<p>可以验证如下结果均为true<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(cp.__proto__===ColorPoint.prototype);</div><div class="line"><span class="built_in">console</span>.log(ColorPoint.prototype.__proto__===Point.prototype);</div><div class="line"><span class="built_in">console</span>.log(Point.prototype.__proto__===<span class="built_in">Object</span>.prototype);</div></pre></td></tr></table></figure></p>
-<p>由于原型链的存在，可以使得ColorPoint实例可以访问Point的原型方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(cp.toString1());    <span class="comment">//"x:1,y:2"</span></div><div class="line"><span class="built_in">console</span>.log(cp.toString2());    <span class="comment">//"red x:1,y:2"</span></div></pre></td></tr></table></figure></p>
+<p>对这个关系图进行解析，也分为2个部分：<br>1）对图片右侧进行解析：<br>子类ColorPoint的原型对象的__proto__属性指向父类的原型对象，也就是说：通过extends,使得子类的原型对象是父类的实例，且子类中的函数自动的添加到这个原型对象上。如图，可以看到ColorPoint.prototype上有toString2方法。</p>
+<p>可以验证如下结果均为true</p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cp<span class="token punctuation">.</span>__proto__<span class="token operator">===</span>ColorPoint<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ColorPoint<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token operator">===</span>Point<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Point<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token operator">===</span>Object<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>由于原型链的存在，可以使得ColorPoint实例可以访问Point的原型方法。</p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cp<span class="token punctuation">.</span><span class="token function">toString1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//"x:1,y:2"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cp<span class="token punctuation">.</span><span class="token function">toString2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//"red x:1,y:2"</span>
+</code></pre>
 <p>有一个值得注意的点：<br>super(x, y);使得x,y成为子类的实例的方法，而不是在原型对象上。</p>
-<p>2）对图片左侧：<br>在es5中，可以看到构造函数的__proto__属性都是指向Function.prototype。但是通过extends实现的继承中，构造函数之间存在着联系。<br>如下等式均为true<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ColorPoint.__proto__===Point;</div><div class="line">Point.__proto__===<span class="built_in">Function</span>.prototype;</div></pre></td></tr></table></figure></p>
-<p>因此，ColorPoint类不仅仅可以调用自己的类属性，类方法，还能访问到Point的类属性和类方法。如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ColorPoint.colorpointprop;      <span class="comment">//"ColorPoint类属性"</span></div><div class="line">ColorPoint.classMethod2();      <span class="comment">//"ColorPoint类方法"</span></div><div class="line">ColorPoint.pointprop;           <span class="comment">//"Point类属性"</span></div><div class="line">ColorPoint.classMethod1();      <span class="comment">//"Point类方法"</span></div></pre></td></tr></table></figure></p>
+<p>2）对图片左侧：<br>在es5中，可以看到构造函数的__proto__属性都是指向Function.prototype。但是通过extends实现的继承中，构造函数之间存在着联系。<br>如下等式均为true</p>
+<pre class=" language-js"><code class="language-js">ColorPoint<span class="token punctuation">.</span>__proto__<span class="token operator">===</span>Point<span class="token punctuation">;</span>
+Point<span class="token punctuation">.</span>__proto__<span class="token operator">===</span>Function<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+</code></pre>
+<p>因此，ColorPoint类不仅仅可以调用自己的类属性，类方法，还能访问到Point的类属性和类方法。如下</p>
+<pre class=" language-js"><code class="language-js">ColorPoint<span class="token punctuation">.</span>colorpointprop<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//"ColorPoint类属性"</span>
+ColorPoint<span class="token punctuation">.</span><span class="token function">classMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//"ColorPoint类方法"</span>
+ColorPoint<span class="token punctuation">.</span>pointprop<span class="token punctuation">;</span>           <span class="token comment" spellcheck="true">//"Point类属性"</span>
+ColorPoint<span class="token punctuation">.</span><span class="token function">classMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//"Point类方法"</span>
+</code></pre>
 <p>终于说完啦，其实在我们平时常用的继承中，常用的还是右边的原型链，为了更好的理解extends，左边部分也需要理清楚！</p>
 
     
@@ -445,6 +518,14 @@
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
+    
+        <a href="/2017/06/10/redux中间件/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
     
 
     <!-- Section Spacer -->
@@ -544,7 +625,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -562,7 +643,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS/">JS<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/框架/">框架<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS/">JS<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/框架/">框架<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
