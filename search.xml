@@ -1055,17 +1055,17 @@ document.getElementById("myDiv").style
   
     
     <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[about]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>由于资金不足<br>博客从阿里云迁移到了github上了</p>
 <p>我是一个热爱前端的美少女<br>一个爱说脏话但是很有素质的美少女<br>一个热爱生活，热爱运动的美少女<br>大家一起加油，么么哒(<em> ￣3)(ε￣ </em>)</p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
     </entry>
     
   
