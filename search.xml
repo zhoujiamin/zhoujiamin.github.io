@@ -25,6 +25,594 @@
     </entry>
     
     <entry>
+      <title><![CDATA[react-redux源码学习]]></title>
+      <url>/2017/08/02/react-redux%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</url>
+      <content type="html"><![CDATA[<p>版本4.x</p>
+<blockquote>
+<p>声明：本文原创，如有雷同，别人抄我。</p>
+</blockquote>
+<p><strong>为什么需要 react-redux？</strong></p>
+<p>首先，Redux跟React是独立的，并没有直接的关系。Redux是一个单独的类Flux数据流管理框架，它并不只服务于React。<br>如果想用Redux来管理React开发中的数据流部分，则可以使用连接React与Redux的框架：redux-react，并提供了触发React UI树重新渲染的机制。</p>
+<p><strong>React如何响应store变化？</strong></p>
+<p>React其实跟Redux没有直接联系，Redux中dispatch触发store tree中state变化，并不会导致React重新渲染。<br>react-redux才是真正触发React重新渲染的模块。</p>
+<p>react-redux提供了2个API：Provider和connect。<br>Provider是个组件，准确的说是个组件类，connect是高阶函数。</p>
+<p>Provider在原应用上包裹这个原应用，接收Redux的store作为props，通过context对象传递给子孙组件；通过connect，对子组件进行包装，将store.state以及dispatch以props的形式注入。对于子组件componetA来说，当子组件componetA或者别的组件中dispatch(action)，触发state的改变，会触发Connect(componetA)组件中的render，重新渲染。</p>
+<p><strong>举例说明</strong></p>
+<p>ps:如果不理解，可以全篇读完再看。</p>
+<p>在codepen上写了个简单的例子：<a href="https://codepen.io/zhoujiamin/pen/VzLxpo?editors=1010" target="_blank" rel="external">地址</a></p>
+<p>如图为例子的功能区域说明，APP中分为2个部分，通过操作AddTodo组件中可以在TodoList中添加Todo组件，返回点击todo可以改变todo组件中文字的样式。</p>
+<p><img src="./1.png" alt="react-redux"></p>
+<p>首先画一下组件树：<br><img src="./2.png" alt="react-redux"></p>
+<p>如图中，通过Connect(addTodo)和Connect(addTodoList)可以取得在Provider中的store对象。<br>Connect(addTodo)和Connect(addTodoList)将相应的状态和事件传给子组件。可以看到组件Connect(addTodoList)中注册了subscribe(this.setState)(并不是直接注册，这里仅示意)，而Connect(addTodo)没有。原因主要是addTodo组件并不需要获取store.state，因此，当store.state发生改变时，该组件不需要直接重新渲染。</p>
+<p>首先学习一下React的context。因为context是react-redux的核心。</p>
+<p>有很多嵌套组件需要共享一个状态，这时，我们常常会通过props进行传递，父组件传给子组件，子组件再传给自身的子组件，逐级传递。这样显然太麻烦了，有没有办法让所有的组件共享一个状态？</p>
+<p>React 的 context 就是这么一个东西，某个组件只要往自己的 context 里面放了一些状态，这个组件之下的所有子组件都直接访问这个状态而不需要通过中间组件的传递。</p>
+<p>如下图，对于son1组件的的context，grandson1和grandson2可以直接访问到(子孙组件可以访问到)，但其他组件不行。</p>
+<p><img src="./3.png" alt="context"></p>
+<p>官方给出了使用context前后的例子。<br>MessageList组件原本想给Message中的button传递color状态时，需要通过props逐级传递，但是借助于context，可以在button组件中直接获取color状态。</p>
+<p>使用前：</p>
+<pre><code>class Button extends React.Component {
+  render() {
+    return (
+      &lt;button style={{background: this.props.color}}&gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+
+class Message extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.text} &lt;Button color={this.props.color}&gt;Delete&lt;/Button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+class MessageList extends React.Component {
+  render() {
+    const color = &quot;purple&quot;;
+    const children = this.props.messages.map((message) =&gt;
+      &lt;Message text={message.text} color={color} /&gt;
+    );
+    return &lt;div&gt;{children}&lt;/div&gt;;
+  }
+}
+</code></pre><p>使用后：</p>
+<pre><code>const PropTypes = require(&#39;prop-types&#39;);
+
+class Button extends React.Component {
+  render() {
+    return (
+      &lt;button style={{background: this.context.color}}&gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+
+Button.contextTypes = {
+  color: PropTypes.string
+};
+
+class Message extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.text} &lt;Button&gt;Delete&lt;/Button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+class MessageList extends React.Component {
+  getChildContext() {
+    return {color: &quot;purple&quot;};
+  }
+
+  render() {
+    const children = this.props.messages.map((message) =&gt;
+      &lt;Message text={message.text} /&gt;
+    );
+    return &lt;div&gt;{children}&lt;/div&gt;;
+  }
+}
+
+MessageList.childContextTypes = {
+  color: PropTypes.string
+};
+</code></pre><h2 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h2><p>react-redux目前暴露了Provider, connect2个函数。</p>
+<h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><p><provider store=""> 使组件层级中的 connect() 方法都能够获得 Redux store。</provider></p>
+<p>主要做了2个工作</p>
+<ol>
+<li>在原应用组件上包裹一层，使原来整个应用成为Provider的子组件</li>
+<li>数据放在context中的store中，可以让connect()可以读到</li>
+</ol>
+<p>子组件也可以直接通过context去读store，但是connect已经封装好各种功能了，因此也无需多此一举。</p>
+<pre><code>export default class Provider extends Component {
+  // getChildContext: 将store传递给子孙
+  getChildContext() {
+    return { store: this.store }
+  }
+  //取得属性store
+  constructor(props, context) {
+    super(props, context)
+    this.store = props.store
+  }
+
+  render() {
+    return Children.only(this.props.children)
+  }
+}
+
+if (process.env.NODE_ENV !== &#39;production&#39;) {
+  Provider.prototype.componentWillReceiveProps = function (nextProps) {
+    const { store } = this
+    const { store: nextStore } = nextProps
+    //store改变，则发出警告
+    if (store !== nextStore) {
+      warnAboutReceivingStore()
+    }
+  }
+}
+ //对Provider的props和context类型做出规定
+Provider.propTypes = {
+  store: storeShape.isRequired,
+  children: PropTypes.element.isRequired
+}
+Provider.childContextTypes = {
+  store: storeShape.isRequired
+}
+</code></pre><h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><p><strong>使用：</strong> connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])(WrappedComponent)<br>连接 React 组件与 Redux store。连接操作不会改变原来的组件类，而是进行包装。</p>
+<p>state更新的数据流：</p>
+<p>初始化（注册handleChange,再组件中导入dispatch）—-&gt;组件dispatch(action)—&gt;触发handleChange—-&gt;触发setState—-&gt;render</p>
+<p>整体架构如下（可以看到，整体结构是函数柯里化的结构）</p>
+<pre><code>export default function connect(mapStateToProps, mapDispatchToProps, mergeProps, options = {}) {
+
+  return function wrapWithConnect(WrappedComponent) {
+     class Connect extends Component {}
+
+     //把WrappedComponent的非React属性拷贝到Connect上。
+     return hoistStatics(Connect, WrappedComponent)  
+  }  
+}
+</code></pre><p>connect函数在返回wrapWithConnect函数前，进行了参数初始化，对mapStateToProps, mapDispatchToProps, mergeProps, options进行了操作。</p>
+<pre><code>  const shouldSubscribe = Boolean(mapStateToProps)
+  const mapState = mapStateToProps || defaultMapStateToProps
+
+  let mapDispatch
+  if (typeof mapDispatchToProps === &#39;function&#39;) {
+    mapDispatch = mapDispatchToProps
+  } else if (!mapDispatchToProps) {
+    mapDispatch = defaultMapDispatchToProps
+  } else {
+    mapDispatch = wrapActionCreators(mapDispatchToProps)
+  }
+
+  const finalMergeProps = mergeProps || defaultMergeProps
+  const { pure = true, withRef = false } = options
+  const checkMergedEquals = pure &amp;&amp; finalMergeProps !== defaultMergeProps
+</code></pre><p>对于 wrapWithConnect 中的Connect类进行分析。</p>
+<p><strong>constructor构造函数</strong></p>
+<p>设置Connect类的state,后面将通过setState进行组件更新。</p>
+<pre><code>constructor(props, context) {
+    super(props, context)
+        this.version = version
+        this.store = props.store || context.store
+
+        invariant(this.store,
+          `Could not find &quot;store&quot; in either the context or ` +
+          `props of &quot;${connectDisplayName}&quot;. ` +
+          `Either wrap the root component in a &lt;Provider&gt;, ` +
+          `or explicitly pass &quot;store&quot; as a prop to &quot;${connectDisplayName}&quot;.`
+        )
+
+        const storeState = this.store.getState()
+        this.state = { storeState }
+        this.clearCache()
+}
+</code></pre><p><strong>componentDidMount</strong></p>
+<p>条件合适，则注册handleChange。因此，执行store.dispatch(action),则handleChange就会执行。</p>
+<pre><code>//const shouldSubscribe = Boolean(mapStateToProps) 
+if (shouldSubscribe &amp;&amp; !this.unsubscribe) {
+    this.unsubscribe = this.store.subscribe(this.handleChange.bind(this))
+    this.handleChange()
+}
+</code></pre><p><strong>handleChange</strong></p>
+<p>一触发dispatch，则handleChange就会执行。如果state发生改变，则执行setState，就会触发render。</p>
+<p>更新如下：</p>
+<pre><code>handleChange() {
+    //...
+    this.hasStoreStateChanged = true
+    this.setState({ storeState })
+}
+</code></pre><p><strong>render函数</strong></p>
+<p>进行一系列对比与计算，确认this.renderedElement发生改变，则执行如下：</p>
+<pre><code>      render() {      
+        //.......
+
+        if (withRef) {
+          this.renderedElement = createElement(WrappedComponent, {
+            ...this.mergedProps,
+            ref: &#39;wrappedInstance&#39;
+          })
+        } else {
+          this.renderedElement = createElement(WrappedComponent,
+            this.mergedProps
+          )
+        }
+
+        return this.renderedElement
+      }
+</code></pre><p><strong>shouldComponentUpdate</strong></p>
+<p>shouldComponentUpdate返回false，之后的render不执行，返回true，render执行。</p>
+<p>这里，会判断属性和状态是不是确实发生改变，改变了才会进行render。</p>
+<pre><code>shouldComponentUpdate() {
+    return !pure || this.haveOwnPropsChanged || this.hasStoreStateChanged
+}
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 框架 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> React </tag>
+            
+            <tag> Redux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[redux源码学习]]></title>
+      <url>/2017/07/20/redux%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>声明：本文原创，如有雷同，别人抄我。</p>
+</blockquote>
+<p>redux源码竟然那么短小。</p>
+<p><strong>为什么会出现redux?</strong></p>
+<p>在js单页面应用中，js需要管理复杂的state （状态）。由于前端有各种复杂的UI交互，包括ajax等等，都会去改变state。state 在什么时候，由于什么原因，如何变化已然不受控制，想重现问题或者添加新功能就会变得非常困难。</p>
+<p>redux可以维护页面的state （状态），让状态变的可以预测，用过特定的方式触发数据改变，强制让所有的状态变化都必须留下一笔记录，这样就可以利用这个来做各种 debug 工具、历史回滚等等。所谓的单向数据流，就是当用户进行操作的时候，会从组件发出一个 action，这个 action 流到 store 里面，触发 store 对状态进行改动，然后 store 又触发组件基于新的状态重新渲染。</p>
+<p><strong>redux是怎么做到可预测的</strong></p>
+<ol>
+<li><p>单一数据源，所有数据都是只读的</p>
+</li>
+<li><p>要想修改数据，必须 dispatch 一个 action 来描述什么发生了</p>
+</li>
+<li><p>改变当处理 action 时，必须生成一个新的 state，不得直接修改原始对象</p>
+</li>
+</ol>
+<p><strong>redux单向数据流</strong></p>
+<ol>
+<li><p>调用 store.dispatch(action)</p>
+</li>
+<li><p>store 调用传入的 reducer 函数</p>
+</li>
+<li><p>根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。</p>
+</li>
+<li><p>store 保存了根 reducer 返回的完整 state 树。</p>
+</li>
+</ol>
+<p>这个新的树就是应用的下一个 state,所有订阅 store.subscribe(listener) 的监听器都将被调用；<br>监听器里可以调用 store.getState() 获得当前 state。</p>
+<p>极简单项数据流图：</p>
+<p><img src="./flow.png" alt="default"></p>
+<p><strong>redux使用中存在的问题</strong></p>
+<p>redux本身非常短小，概念清晰，但把复杂的工作交给了用户，用户的使用比较复杂，以开发效率换取了数据管理。</p>
+<p><strong>与vuex进行对比</strong></p>
+<p>实际上不应该用redux对比vuex,而应该用redux+react-redux对比vue。   vuex是专门为Vue设计的状态管理库，而Redux和React之间没有关系，Redux通过React-redux与react搭配使用。vuex的基本思想以及api,与redux都非常相似，但是vuex对数据的驱动，试图的更新是通过其响应式原理完成的，与react-redux+redux不同。</p>
+<p>本文以源码的目录结构，来记录自己的学习旅程。</p>
+<p>简单的思维导图：</p>
+<p><img src="./init.png" alt="default"></p>
+<p>源码目录：</p>
+<pre><code>├── index.js
+├── applyMiddleware.js
+├── bindActionCreators.js
+├── combineReducers.js
+├── compose.js
+├── createStore
+└── utils
+    └── warning.js
+</code></pre><h2 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h2><pre><code>export {
+  createStore,
+  combineReducers,
+  bindActionCreators,
+  applyMiddleware,
+  compose
+}
+</code></pre><p>index.js短短几行暴露出几个核心的API。</p>
+<h2 id="warning-js"><a href="#warning-js" class="headerlink" title="warning.js"></a>warning.js</h2><pre><code>export default function warning(message) {
+  if (typeof console !== &#39;undefined&#39; &amp;&amp; typeof console.error === &#39;function&#39;) {
+    console.error(message)
+  }
+  try {
+    throw new Error(message)
+  } catch (e) { }
+}
+</code></pre><p>同样是很简单的文件，用于抛出错误</p>
+<h2 id="createStore-js"><a href="#createStore-js" class="headerlink" title="createStore.js"></a>createStore.js</h2><p>该文件核心：</p>
+<p>1）createStore函数接受参数后，返回一个store对象,这个对象对外暴露了dispatch，subscribe,getState,replaceReducer几个函数。</p>
+<p>2）为了初始化state,createStore函数内部执行了一次 dispatch({ type: ActionTypes.INIT })</p>
+<pre><code>function createStore(reducer, preloadedState, enhancer){
+    ......
+  return {
+    dispatch, //唯一一个可以改变 state 的函数
+    subscribe, //订阅一个状态改变后，要触发的监听函数 
+    getState,  // 获取 store 里的 state
+    replaceReducer, //Redux热加载的时候可以替换 Reducer
+    [$$observable]: observable //对象的私有属性，供内部使用
+  }
+}
+</code></pre><p>接下来，逐步分析整个文件。<br>createStore接受3个参数：reducer，preloadedState， enhancer</p>
+<p><strong>reducer</strong></p>
+<p>reducer是一个函数，接受当前state和action作为参数，返回next state。</p>
+<p>redux要求我们输入的reducer必须是纯函数，那么为什么要保证reduer为纯函数呢？<br>（纯函数概念：函数的返回结果只依赖于它的参数，函数执行过程里面没有副作用，副作用是指对外部产生变化）</p>
+<ol>
+<li>不改变输入的state,可以支持回滚，保存快照等操作 </li>
+<li>不引起外界数据变化，保证reduer的结果是可预测的</li>
+</ol>
+<p>实际上，也不一定非纯函数不可，只能说纯函数是一种最佳实践。社区中，有一些讨论，<a href="https://github.com/reactjs/redux/issues/1639" target="_blank" rel="external">参考</a></p>
+<p><strong>preloadedState</strong></p>
+<p>初始化的state。可以用于服务端取得初始化的值。在reducers里可以设置初始值</p>
+<pre><code>reducerfun(state = 4, action){}
+</code></pre><p>两者同时设置，以preloadedState为准。</p>
+<p><strong>enhancer</strong></p>
+<p>增强store。是一个组合 store creator 的高阶函数，返回一个新的强化过的 store creator。</p>
+<p>createStore函数内部首先做了一些简单的准备操作。</p>
+<pre><code>  /**
+   *如果preloadedState是函数，且enhancer为undefined,则enhancer为preloadedState的值，
+   *而preloadedState则为undefined，意思是我们输入参数的时候，preloadedState可以被省略输入
+   */  
+  if (typeof preloadedState === &#39;function&#39; &amp;&amp; typeof enhancer === &#39;undefined&#39;) {
+    enhancer = preloadedState
+    preloadedState = undefined
+  }
+  /**
+   *enhancer对createStore函数进行增强，然后才传入参数reducer, preloadedState
+   */
+  if (typeof enhancer !== &#39;undefined&#39;) {
+    if (typeof enhancer !== &#39;function&#39;) {
+      throw new Error(&#39;Expected the enhancer to be a function.&#39;)
+    }
+
+    return enhancer(createStore)(reducer, preloadedState)
+  }
+
+  if (typeof reducer !== &#39;function&#39;) {
+    throw new Error(&#39;Expected the reducer to be a function.&#39;)
+  }
+</code></pre><p>内部变量，不对外暴露</p>
+<pre><code>  let currentReducer = reducer        //当前reducer,currentReducer用于执行action 
+  let currentState = preloadedState   //当前的状态
+  let currentListeners = []           //
+  let nextListeners = currentListeners
+  let isDispatching = false //记录是不是正在dispath
+
+  function ensureCanMutateNextListeners() {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice()
+    }
+  }
+</code></pre><p>对外暴露getState函数，使得外部通过store.getState()就可以得到state的值</p>
+<pre><code> function getState() {
+    return currentState
+}
+</code></pre><p>对外暴露subscribe函数，用于注册listener，当dispatch，subscribe注册的listener就会被执行，<br>返回一个unsubscribe函数，执行这个函数之后，listener将被注销。<br>ensureCanMutateNextListeners用于切断nextListeners和currentListeners<br>之间的联系。使得当dispatch时，注册或者或者注销listener，对dispatch不会立即产生影响。</p>
+<pre><code>  function subscribe(listener) {
+    if (typeof listener !== &#39;function&#39;) {
+      throw new Error(&#39;Expected listener to be a function.&#39;)
+    }
+
+    let isSubscribed = true
+    //注册listener
+    ensureCanMutateNextListeners()
+    nextListeners.push(listener)
+
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return
+      }
+
+      isSubscribed = false
+
+      ensureCanMutateNextListeners()
+      const index = nextListeners.indexOf(listener)
+      nextListeners.splice(index, 1)
+    }
+  }
+</code></pre><p>对外暴露dispatch函数</p>
+<pre><code>  function dispatch(action) {
+    /**
+    *isPlainObject用于检查 value 是否是普通对象。 也就是说该对象由 Object 构造函数创建或者
+    *[[Prototype]] 为空。 
+    */
+    if (!isPlainObject(action)) {
+      throw new Error(
+        &#39;Actions must be plain objects. &#39; +
+        &#39;Use custom middleware for async actions.&#39;
+      )
+    }
+
+    if (typeof action.type === &#39;undefined&#39;) {
+      throw new Error(
+        &#39;Actions may not have an undefined &quot;type&quot; property. &#39; +
+        &#39;Have you misspelled a constant?&#39;
+      )
+    }
+    //正在dispath的时候不能再次dispath
+    if (isDispatching) {
+      throw new Error(&#39;Reducers may not dispatch actions.&#39;)
+    }
+    /**
+     *currentState执行后重新赋值
+     */ 
+    try {
+      isDispatching = true
+      currentState = currentReducer(currentState, action)
+    } finally {
+      isDispatching = false
+    }
+    //执行listener
+    const listeners = currentListeners = nextListeners
+    for (let i = 0; i &lt; listeners.length; i++) {
+      const listener = listeners[i]
+      listener()
+    }
+
+    return action
+  }
+</code></pre><p>replaceReducer</p>
+<p>替换 store 当前用来计算 state 的 reducer。<br>这是一个高级 API。只有在你需要实现代码分隔，而且需要立即加载一些 reducer 的时候才可能会用到它。在实现 Redux 热加载机制的时候也可能会用到。</p>
+<pre><code>  function replaceReducer(nextReducer) {
+    if (typeof nextReducer !== &#39;function&#39;) {
+      throw new Error(&#39;Expected the nextReducer to be a function.&#39;)
+    }
+
+    currentReducer = nextReducer
+    dispatch({ type: ActionTypes.INIT })
+  }
+</code></pre><p>observable函数是一个内部函数，没有在得到调用，因此暂时放一边。</p>
+<p>最后，在createStore函数内部中执行了</p>
+<pre><code>const ActionTypes = {
+  INIT: &#39;@@redux/INIT&#39;
+}
+ //初始化 store 里的 state tree
+ dispatch({ type: ActionTypes.INIT })
+</code></pre><p>可以知道，当preloadedState为undefined,currentState将会等于currentReducer函数中为state设置的初始值。</p>
+<h2 id="combineReducers-js"><a href="#combineReducers-js" class="headerlink" title="combineReducers.js"></a>combineReducers.js</h2><p>combineReducers 辅助函数的作用是，把一个由多个不同 reducer 函数作为 value 的 object，合并成一个最终的 reducer 函数，然后就可以对这个 reducer 调用 createStore，生成store对象。</p>
+<p>由于每个reducer在处理action的时候，如果store发生了改变，则返回新的对象。因此，combineReducers.js中，可以对比每个store(子store)的引用，就可以知道这个store是否<br>真正发生改变。这大大节约了比较成本，要比较2个JS对象是否完全相同，必须进行深比较。但是深比较在真实的应用当中代价昂贵，因为通常js的对象都很大，同时需要比较的次数很多。因此，当state改变，reduer就返回新对象，这样用可以通过比较引用就知道state是否正在改变</p>
+<pre><code>export default function combineReducers(reducers) {
+    ....//校验与检测
+
+/*
+ *返回combination，为组合之后的reducer
+ *finalReducerKeys为检测之后的ReducerKeys
+ *finalReducers为reducer组成的对象
+ */
+
+  return function combination(state = {}, action) {
+    if (shapeAssertionError) {
+      throw shapeAssertionError
+    }
+
+    if (process.env.NODE_ENV !== &#39;production&#39;) {
+      const warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache)
+      if (warningMessage) {
+        warning(warningMessage)
+      }
+    }
+
+    let hasChanged = false
+    const nextState = {}
+    /*
+     *逐个更新每个reducer中对应的state
+     */
+    for (let i = 0; i &lt; finalReducerKeys.length; i++) {
+      const key = finalReducerKeys[i]
+      const reducer = finalReducers[key]
+      const previousStateForKey = state[key]
+      const nextStateForKey = reducer(previousStateForKey, action)
+      if (typeof nextStateForKey === &#39;undefined&#39;) {
+        const errorMessage = getUndefinedStateErrorMessage(key, action)
+        throw new Error(errorMessage)
+      }
+      nextState[key] = nextStateForKey
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey
+    }
+    /*
+     *只有输出的state真正改变了，才会更新输出nextState
+     */
+    return hasChanged ? nextState : state
+  }
+}
+</code></pre><h2 id="compose-js"><a href="#compose-js" class="headerlink" title="compose.js"></a>compose.js</h2><p>从右到左来组合多个函数。<br>compose(f, g, h) 与 (…args) =&gt; f(g(h(…args)))相同<br>常常用来组合中间件</p>
+<pre><code>export default function compose(...funcs) {
+  if (funcs.length === 0) {
+    return arg =&gt; arg
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
+
+  return funcs.reduce((a, b) =&gt; (...args) =&gt; a(b(...args)))
+}
+</code></pre><h2 id="applyMiddleware-js"><a href="#applyMiddleware-js" class="headerlink" title="applyMiddleware.js"></a>applyMiddleware.js</h2><p>Middleware 可以让你包装 store 的 dispatch 方法来达到你想要的目的。同时， middleware 还拥有“可组合”这一关键特性。多个 middleware 可以被组合到一起使用，形成 middleware 链。其中，每个 middleware 都不需要关心链中它前后的 middleware 的任何信息。</p>
+<p>本质上middlewares就是对store.dispatch进行了包装，在原有功能的基础上增加了别的功能</p>
+<pre><code>export default function applyMiddleware(...middlewares) {
+  return (createStore) =&gt; (reducer, preloadedState, enhancer) =&gt; {
+    const store = createStore(reducer, preloadedState, enhancer)
+    let dispatch = store.dispatch
+    let chain = []
+
+    const middlewareAPI = {
+      getState: store.getState,
+      dispatch: (action) =&gt; dispatch(action)
+    }
+    chain = middlewares.map(middleware =&gt; middleware(middlewareAPI))
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+}
+</code></pre><h2 id="bindActionCreator-js"><a href="#bindActionCreator-js" class="headerlink" title="bindActionCreator.js"></a>bindActionCreator.js</h2><p>把 action creators 转成拥有同名 keys 的对象，<br>但使用 dispatch 把每个 action creator 包围起来，这样可以直接调用它们。</p>
+<p>本质上就是将actionCreator和dispatch的工作集成在一个函数中。</p>
+<p>输入actionCreators为单一函数，则返回函数。<br>输入为对象时，则返回对象，对象的key值与actionCreators的key值相同。<br>通过调用返回值boundActionCreators(args),可以完成dispath的操作。</p>
+<pre><code>function bindActionCreator(actionCreator, dispatch) {
+  return (...args) =&gt; dispatch(actionCreator(...args))
+}
+
+export default function bindActionCreators(actionCreators, dispatch) {
+  if (typeof actionCreators === &#39;function&#39;) {
+    return bindActionCreator(actionCreators, dispatch)
+  }
+
+  if (typeof actionCreators !== &#39;object&#39; || actionCreators === null) {
+    throw new Error(
+      `bindActionCreators expected an object or a function, instead received ${actionCreators === null ? &#39;null&#39; : typeof actionCreators}. ` +
+      `Did you write &quot;import ActionCreators from&quot; instead of &quot;import * as ActionCreators from&quot;?`
+    )
+  }
+
+  const keys = Object.keys(actionCreators)
+  const boundActionCreators = {}
+  for (let i = 0; i &lt; keys.length; i++) {
+    const key = keys[i]
+    const actionCreator = actionCreators[key]
+    if (typeof actionCreator === &#39;function&#39;) {
+      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch)
+    }
+  }
+  return boundActionCreators
+}
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 框架 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Redux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[redux中间件]]></title>
       <url>/2017/06/10/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
       <content type="html"><![CDATA[<p>不太理解redux中间件，就翻看了一下中间接相关的简单的源码。看了一下，又简单又精彩，可是我的语言表达能力有限。</p>

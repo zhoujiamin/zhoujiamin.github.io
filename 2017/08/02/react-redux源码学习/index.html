@@ -10,7 +10,7 @@
     
     <title>
         
-            about | 
+            react-redux源码学习 | 
         
         ZJM BLOG
     </title>
@@ -34,7 +34,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="周 J M">
     <meta name="description" content="null">
-    <meta name="keywords" content="前端">
+    <meta name="keywords" content="前端,React,Redux">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.jpg">
@@ -60,9 +60,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="about | ZJM BLOG">
+    <meta property="og:title" content="react-redux源码学习 | ZJM BLOG">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="React"> <meta property="og:article:tag" content="Redux"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -220,6 +220,41 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核心API"><span class="post-toc-number">1.</span> <span class="post-toc-text">核心API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Provider"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Provider</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#connect"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">connect</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
@@ -246,7 +281,7 @@
         
     
             <p class="article-headline-p">
-                about
+                react-redux源码学习
             </p>
         </div>
 
@@ -265,7 +300,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>周 J M</strong>
-        <span>5月 02, 2017</span>
+        <span>8月 02, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -282,6 +317,15 @@
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/React/">React</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Redux/">Redux</a>
+    </ul>
     
 
     <!-- Share -->
@@ -307,7 +351,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=about&url=http://yoursite.com//about/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=react-redux源码学习&url=http://yoursite.com//2017/08/02/react-redux源码学习/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -316,7 +360,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=about&url=http://yoursite.com//about/index.html&via=周 J M" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=react-redux源码学习&url=http://yoursite.com//2017/08/02/react-redux源码学习/index.html&via=周 J M" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -325,7 +369,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2017/08/02/react-redux源码学习/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -334,7 +378,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//about/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2017/08/02/react-redux源码学习/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -358,9 +402,232 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>由于资金不足<br>博客从阿里云迁移到了github上了</p>
-<p>我是一个热爱前端的美少女<br>一个爱说脏话但是很有素质的美少女<br>一个热爱生活，热爱运动的美少女<br>大家一起加油，么么哒(<em> ￣3)(ε￣ </em>)</p>
+        <p>版本4.x</p>
+<blockquote>
+<p>声明：本文原创，如有雷同，别人抄我。</p>
+</blockquote>
+<p><strong>为什么需要 react-redux？</strong></p>
+<p>首先，Redux跟React是独立的，并没有直接的关系。Redux是一个单独的类Flux数据流管理框架，它并不只服务于React。<br>如果想用Redux来管理React开发中的数据流部分，则可以使用连接React与Redux的框架：redux-react，并提供了触发React UI树重新渲染的机制。</p>
+<p><strong>React如何响应store变化？</strong></p>
+<p>React其实跟Redux没有直接联系，Redux中dispatch触发store tree中state变化，并不会导致React重新渲染。<br>react-redux才是真正触发React重新渲染的模块。</p>
+<p>react-redux提供了2个API：Provider和connect。<br>Provider是个组件，准确的说是个组件类，connect是高阶函数。</p>
+<p>Provider在原应用上包裹这个原应用，接收Redux的store作为props，通过context对象传递给子孙组件；通过connect，对子组件进行包装，将store.state以及dispatch以props的形式注入。对于子组件componetA来说，当子组件componetA或者别的组件中dispatch(action)，触发state的改变，会触发Connect(componetA)组件中的render，重新渲染。</p>
+<p><strong>举例说明</strong></p>
+<p>ps:如果不理解，可以全篇读完再看。</p>
+<p>在codepen上写了个简单的例子：<a href="https://codepen.io/zhoujiamin/pen/VzLxpo?editors=1010" target="_blank" rel="external">地址</a></p>
+<p>如图为例子的功能区域说明，APP中分为2个部分，通过操作AddTodo组件中可以在TodoList中添加Todo组件，返回点击todo可以改变todo组件中文字的样式。</p>
+<p><img src="./1.png" alt="react-redux"></p>
+<p>首先画一下组件树：<br><img src="./2.png" alt="react-redux"></p>
+<p>如图中，通过Connect(addTodo)和Connect(addTodoList)可以取得在Provider中的store对象。<br>Connect(addTodo)和Connect(addTodoList)将相应的状态和事件传给子组件。可以看到组件Connect(addTodoList)中注册了subscribe(this.setState)(并不是直接注册，这里仅示意)，而Connect(addTodo)没有。原因主要是addTodo组件并不需要获取store.state，因此，当store.state发生改变时，该组件不需要直接重新渲染。</p>
+<p>首先学习一下React的context。因为context是react-redux的核心。</p>
+<p>有很多嵌套组件需要共享一个状态，这时，我们常常会通过props进行传递，父组件传给子组件，子组件再传给自身的子组件，逐级传递。这样显然太麻烦了，有没有办法让所有的组件共享一个状态？</p>
+<p>React 的 context 就是这么一个东西，某个组件只要往自己的 context 里面放了一些状态，这个组件之下的所有子组件都直接访问这个状态而不需要通过中间组件的传递。</p>
+<p>如下图，对于son1组件的的context，grandson1和grandson2可以直接访问到(子孙组件可以访问到)，但其他组件不行。</p>
+<p><img src="./3.png" alt="context"></p>
+<p>官方给出了使用context前后的例子。<br>MessageList组件原本想给Message中的button传递color状态时，需要通过props逐级传递，但是借助于context，可以在button组件中直接获取color状态。</p>
+<p>使用前：</p>
+<pre><code>class Button extends React.Component {
+  render() {
+    return (
+      &lt;button style={{background: this.props.color}}&gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
 
+class Message extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.text} &lt;Button color={this.props.color}&gt;Delete&lt;/Button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+class MessageList extends React.Component {
+  render() {
+    const color = &quot;purple&quot;;
+    const children = this.props.messages.map((message) =&gt;
+      &lt;Message text={message.text} color={color} /&gt;
+    );
+    return &lt;div&gt;{children}&lt;/div&gt;;
+  }
+}
+</code></pre><p>使用后：</p>
+<pre><code>const PropTypes = require(&#39;prop-types&#39;);
+
+class Button extends React.Component {
+  render() {
+    return (
+      &lt;button style={{background: this.context.color}}&gt;
+        {this.props.children}
+      &lt;/button&gt;
+    );
+  }
+}
+
+Button.contextTypes = {
+  color: PropTypes.string
+};
+
+class Message extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.text} &lt;Button&gt;Delete&lt;/Button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+class MessageList extends React.Component {
+  getChildContext() {
+    return {color: &quot;purple&quot;};
+  }
+
+  render() {
+    const children = this.props.messages.map((message) =&gt;
+      &lt;Message text={message.text} /&gt;
+    );
+    return &lt;div&gt;{children}&lt;/div&gt;;
+  }
+}
+
+MessageList.childContextTypes = {
+  color: PropTypes.string
+};
+</code></pre><h2 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h2><p>react-redux目前暴露了Provider, connect2个函数。</p>
+<h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><p><provider store=""> 使组件层级中的 connect() 方法都能够获得 Redux store。</provider></p>
+<p>主要做了2个工作</p>
+<ol>
+<li>在原应用组件上包裹一层，使原来整个应用成为Provider的子组件</li>
+<li>数据放在context中的store中，可以让connect()可以读到</li>
+</ol>
+<p>子组件也可以直接通过context去读store，但是connect已经封装好各种功能了，因此也无需多此一举。</p>
+<pre><code>export default class Provider extends Component {
+  // getChildContext: 将store传递给子孙
+  getChildContext() {
+    return { store: this.store }
+  }
+  //取得属性store
+  constructor(props, context) {
+    super(props, context)
+    this.store = props.store
+  }
+
+  render() {
+    return Children.only(this.props.children)
+  }
+}
+
+if (process.env.NODE_ENV !== &#39;production&#39;) {
+  Provider.prototype.componentWillReceiveProps = function (nextProps) {
+    const { store } = this
+    const { store: nextStore } = nextProps
+    //store改变，则发出警告
+    if (store !== nextStore) {
+      warnAboutReceivingStore()
+    }
+  }
+}
+ //对Provider的props和context类型做出规定
+Provider.propTypes = {
+  store: storeShape.isRequired,
+  children: PropTypes.element.isRequired
+}
+Provider.childContextTypes = {
+  store: storeShape.isRequired
+}
+</code></pre><h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><p><strong>使用：</strong> connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])(WrappedComponent)<br>连接 React 组件与 Redux store。连接操作不会改变原来的组件类，而是进行包装。</p>
+<p>state更新的数据流：</p>
+<p>初始化（注册handleChange,再组件中导入dispatch）—-&gt;组件dispatch(action)—&gt;触发handleChange—-&gt;触发setState—-&gt;render</p>
+<p>整体架构如下（可以看到，整体结构是函数柯里化的结构）</p>
+<pre><code>export default function connect(mapStateToProps, mapDispatchToProps, mergeProps, options = {}) {
+
+  return function wrapWithConnect(WrappedComponent) {
+     class Connect extends Component {}
+
+     //把WrappedComponent的非React属性拷贝到Connect上。
+     return hoistStatics(Connect, WrappedComponent)  
+  }  
+}
+</code></pre><p>connect函数在返回wrapWithConnect函数前，进行了参数初始化，对mapStateToProps, mapDispatchToProps, mergeProps, options进行了操作。</p>
+<pre><code>  const shouldSubscribe = Boolean(mapStateToProps)
+  const mapState = mapStateToProps || defaultMapStateToProps
+
+  let mapDispatch
+  if (typeof mapDispatchToProps === &#39;function&#39;) {
+    mapDispatch = mapDispatchToProps
+  } else if (!mapDispatchToProps) {
+    mapDispatch = defaultMapDispatchToProps
+  } else {
+    mapDispatch = wrapActionCreators(mapDispatchToProps)
+  }
+
+  const finalMergeProps = mergeProps || defaultMergeProps
+  const { pure = true, withRef = false } = options
+  const checkMergedEquals = pure &amp;&amp; finalMergeProps !== defaultMergeProps
+</code></pre><p>对于 wrapWithConnect 中的Connect类进行分析。</p>
+<p><strong>constructor构造函数</strong></p>
+<p>设置Connect类的state,后面将通过setState进行组件更新。</p>
+<pre><code>constructor(props, context) {
+    super(props, context)
+        this.version = version
+        this.store = props.store || context.store
+
+        invariant(this.store,
+          `Could not find &quot;store&quot; in either the context or ` +
+          `props of &quot;${connectDisplayName}&quot;. ` +
+          `Either wrap the root component in a &lt;Provider&gt;, ` +
+          `or explicitly pass &quot;store&quot; as a prop to &quot;${connectDisplayName}&quot;.`
+        )
+
+        const storeState = this.store.getState()
+        this.state = { storeState }
+        this.clearCache()
+}
+</code></pre><p><strong>componentDidMount</strong></p>
+<p>条件合适，则注册handleChange。因此，执行store.dispatch(action),则handleChange就会执行。</p>
+<pre><code>//const shouldSubscribe = Boolean(mapStateToProps) 
+if (shouldSubscribe &amp;&amp; !this.unsubscribe) {
+    this.unsubscribe = this.store.subscribe(this.handleChange.bind(this))
+    this.handleChange()
+}
+</code></pre><p><strong>handleChange</strong></p>
+<p>一触发dispatch，则handleChange就会执行。如果state发生改变，则执行setState，就会触发render。</p>
+<p>更新如下：</p>
+<pre><code>handleChange() {
+    //...
+    this.hasStoreStateChanged = true
+    this.setState({ storeState })
+}
+</code></pre><p><strong>render函数</strong></p>
+<p>进行一系列对比与计算，确认this.renderedElement发生改变，则执行如下：</p>
+<pre><code>      render() {      
+        //.......
+
+        if (withRef) {
+          this.renderedElement = createElement(WrappedComponent, {
+            ...this.mergedProps,
+            ref: &#39;wrappedInstance&#39;
+          })
+        } else {
+          this.renderedElement = createElement(WrappedComponent,
+            this.mergedProps
+          )
+        }
+
+        return this.renderedElement
+      }
+</code></pre><p><strong>shouldComponentUpdate</strong></p>
+<p>shouldComponentUpdate返回false，之后的render不执行，返回true，render执行。</p>
+<p>这里，会判断属性和状态是不是确实发生改变，改变了才会进行render。</p>
+<pre><code>shouldComponentUpdate() {
+    return !pure || this.haveOwnPropsChanged || this.hasStoreStateChanged
+}
+</code></pre>
     
 
     
@@ -386,11 +653,27 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2017/09/02/九月/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/07/20/redux源码学习/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -570,6 +853,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
