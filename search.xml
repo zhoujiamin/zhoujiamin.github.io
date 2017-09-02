@@ -3,6 +3,28 @@
   
     
     <entry>
+      <title><![CDATA[九月]]></title>
+      <url>/2017/09/02/%E4%B9%9D%E6%9C%88/</url>
+      <content type="html"><![CDATA[<p>你好，9月！</p>
+<p>加油，9月！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Diary </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Diary </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[redux中间件]]></title>
       <url>/2017/06/10/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
       <content type="html"><![CDATA[<p>不太理解redux中间件，就翻看了一下中间接相关的简单的源码。看了一下，又简单又精彩，可是我的语言表达能力有限。</p>
@@ -1055,17 +1077,17 @@ document.getElementById("myDiv").style
   
     
     <entry>
-      <title><![CDATA[tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[about]]></title>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>由于资金不足<br>博客从阿里云迁移到了github上了</p>
 <p>我是一个热爱前端的美少女<br>一个爱说脏话但是很有素质的美少女<br>一个热爱生活，热爱运动的美少女<br>大家一起加油，么么哒(<em> ￣3)(ε￣ </em>)</p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
